@@ -2,7 +2,7 @@ BlogSergi::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :posts,  only: [:create, :destroy, :index, :edit, :update] 
+  resources :posts,  only: [:create, :destroy, :index, :edit, :update, :show]
   resources :comments, only: [:create, :destroy, :index,:edit, :update]
  
   #get "static_pages/home"
@@ -12,6 +12,7 @@ BlogSergi::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/content', to: 'posts#index',          via: 'get'
+
   
   #match 'users/makeadmin/:id', to: 'users#make_admin',               via: 'get', as: :make_admin
   #match 'users/makecoadmin/:id', to: 'users#make_coadmin',           via: 'get', as: :make_coadmin

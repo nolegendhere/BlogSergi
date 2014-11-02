@@ -1,25 +1,13 @@
 <li>
-  <span class="posttitle"><%= post.title %></span>
-  <span class="content"><%= post.content %></span>
+  <span class="posttitle">
+    <%= link_to post.title, post %>
+  </span>
+  <span class="content"><%= truncate(strip_tags(simple_format post.content), length: 50) %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> .
   </span>
   <% if admin?(current_user) %>
-    <%= link_to "edit", edit_post_path(post),
-                                     data: { confirm: "You sure?" },
-                                     title: post.content %>
-    <%= link_to "delete", post, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: post.content %>
-  <% end %>                                  
-  <div class="row">
-	<div class="span4">
-		<ol class="usercomments">
-		        <%= render post.comments %>
-		</ol>
-	</div>
-	<div class="span8">
-		<%= render partial: "comments/form", locals: {post: post} %>
-	</div>
-  </div>
+    <%= link_to "edit", edit_post_path(post), data: { confirm: "You sure?" }, title: post.content %>
+    <%= link_to "delete", post, method: :delete, data: { confirm: "You sure?" }, title: post.content %>
+  <% end %>
 </li>

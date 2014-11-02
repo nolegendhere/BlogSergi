@@ -1,11 +1,16 @@
+
 <% provide(:title, "Content") %>
 <div class="row">
-<div class="span8">
-<%= will_paginate @posts%>
-	  
-      <ol class="userposts">
-        <%= render @posts %>
-      </ol>
-<%= will_paginate @posts%>
-</div>
+	<aside class="span9">
+		<%= will_paginate @posts%>
+		<ol class="userposts">
+			<%= render @posts %>
+		</ol>
+		<%= will_paginate @posts%>
+	</aside>
+	<aside class="span3">
+		<section class="text-center">
+			<%= render 'shared/posts_time' %>
+		</section>
+	</aside>
 </div>

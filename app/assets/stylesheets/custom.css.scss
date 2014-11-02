@@ -1,34 +1,26 @@
 @import "bootstrap";
 
 /* mixins, variables, etc. */
-
 $grayMediumLight: #eaeaea;
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-
 /* universal */
-
 html {
   overflow-y: scroll;
 }
-
 body {
   padding-top: 60px;
 }
-
 section {
   overflow: auto;
 }
-
 textarea {
   resize: vertical;
 }
-
 .center {
   text-align: center;
   h1 {
@@ -37,18 +29,15 @@ textarea {
 }
 
 /* typography */
-
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
-
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
-
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -57,15 +46,12 @@ h2 {
   font-weight: normal;
   color: $grayLight;
 }
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
 
-
 /* header */
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -83,7 +69,6 @@ p {
 }
 
 /* footer */
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -109,7 +94,6 @@ footer {
 }
 
 /* miscellaneous */
-
 .debug_dump {
   clear: both;
   float: left;
@@ -118,20 +102,16 @@ footer {
   @include box_sizing;
 }
 
-
 /* forms */
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
-
 input {
   height: auto !important;
 }
-
 #error_explanation {
   color: #f00;
   ul {
@@ -139,14 +119,12 @@ input {
     margin: 0 0 18px 0;
   }
 }
-
 .field_with_errors {
   @extend .control-group;
   @extend .error;
 }
 
 /* Users index */
-
 .users {
   list-style: none;
   margin: 0;
@@ -161,7 +139,6 @@ input {
 }
 
 /* sidebar */
-
 aside {
   section {
     padding: 10px 0;
@@ -186,11 +163,9 @@ aside {
 }
 
 /* posts */
-
 .userposts {
   list-style: none;
   margin: 10px 0 0 0;
-
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
@@ -198,6 +173,9 @@ aside {
 }
 .posttitle {
   display: block;
+  //padding-bottom: 20px;
+  margin-bottom: 20px;
+  font-size: 2em;
 }
 .content {
   display: block;
@@ -205,18 +183,15 @@ aside {
 .timestamp {
   color: $grayLight;
 }
-
 aside {
   textarea {
-    height: 100px;
-    margin-bottom: 5px;
+  height: 100px;
+  margin-bottom: 5px;
   }
 }
-
 .usercomments {
   list-style: none;
   margin: 10px 0 0 50px;
-
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
