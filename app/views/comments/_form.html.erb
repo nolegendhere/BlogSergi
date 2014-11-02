@@ -1,10 +1,9 @@
-<%= form_for :comment , url: comments_path do |f| %>
-
+<%= form_for(@comment) do |f| %>
   <%= f.hidden_field :post_id, :value => post.id %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-  	
     <%= f.text_area :content %>
   </div>
-    <%= f.submit "Comment", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Comment", class: "btn btn-large btn-primary" %>
 <% end %>
 

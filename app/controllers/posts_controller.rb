@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.paginate(page: params[:page])
+    @comment = current_user.comments.build
   end
   
   def create

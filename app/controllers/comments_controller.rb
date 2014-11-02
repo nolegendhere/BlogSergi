@@ -10,12 +10,14 @@ class CommentsController < ApplicationController
     
     @comment= Comment.create(comment_params)
     @comment.user_id = current_user.id
+    @post = Post.find_by_id(comment_params[:post_id])
+    @posts = Post.paginate(page: params[:page])
     
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to posts_url
     else
-      render 'static_pages/home'
+      render 'posts/index'
     end
   end
   
