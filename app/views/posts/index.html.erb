@@ -10,7 +10,9 @@
 	</aside>
 	<aside class="span3">
 		<section class="text-center">
+		<% if @calendar.any? %>
 			<%= render @calendar %>
+		<% end %>
 		</section>
 	</aside>
 </div>
