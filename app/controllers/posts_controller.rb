@@ -5,16 +5,18 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.paginate(page: params[:page])
+    @calendar=Calendar.all
   end
 
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+       @post.add_to_calendar
       flash[:success] = "Post created!"
       redirect_to root_url
     else
       @feed_items = []
-    root_urlender 'static_pages/home'
+      render 'static_pages/home'
     end
   end
 
@@ -39,6 +41,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @calendar=Calendar.all
     if signed_in?
       @comment = current_user.comments.build
     end

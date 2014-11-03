@@ -1,24 +1,31 @@
 <% provide(:title, @post.title) %>
-<li>
-	<span class="posttitle"><%= @post.title %></span>
-	<span class="content"><%= simple_format @post.content %></span>
-	<span class="timestamp">
-		Posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %> .
-	</span>
-	<% if admin?(current_user) %>
-		<%= link_to "edit", edit_post_path(@post), data: { confirm: "You sure?" }, title: @post.content %>
-		<%= link_to "delete", @post, method: :delete, data: { confirm: "You sure?" }, title: @post.content %>
-	<% end %>
-	<div class="row">
-		<div class="span4">
+<div class="row">
+	<aside class="span9">
+		<section class="span9">
+			<span class="posttitle"><%= @post.title %></span>
+			<span class="content"><%= simple_format @post.content %></span>
+			<span class="timestamp">
+				Posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %> .
+			</span>
+		</section>
+		<% if admin?(current_user) %>
+			<%= link_to "edit", edit_post_path(@post), data: { confirm: "You sure?" }, title: @post.content %>
+			<%= link_to "delete", @post, method: :delete, data: { confirm: "You sure?" }, title: @post.content %>
+		<% end %>
+		<section class="span9">
 			<ol class="usercomments">
 				<%= render @post.comments %>
 			</ol>
-		</div>
-		<div class="span8">
+		</section>
+		<section class="span9">
 			<% if signed_in?%>
 				<%= render partial: "comments/form", locals: {post: @post} %>
 			<% end %>
-		</div>
-	</div>
-</li>
+		</section>
+	</aside>
+	<aside class="span3">
+		<section class="text-center">
+			<%= render 'shared/posts_time' %>
+		</section>
+	</aside>
+</div>

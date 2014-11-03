@@ -42,30 +42,30 @@ class CommentsController < ApplicationController
 
   private
 
-  def comment_params
-    params.require(:comment).permit(:content,:post_id)
-  end
-
-  def correct_user
-    @comment = current_user.comments.find_by(id: params[:id])
-    redirect_to root_url if @comment.nil?
-  end
-
-  def admin?(user)
-    if not user.nil?
-      return user.admin
+    def comment_params
+      params.require(:comment).permit(:content,:post_id)
     end
-    return false
-  end
-  
-  def auth_requirements_one
-    @commentuser = current_user.comments.find_by(id: params[:id])
-    if admin?(current_user) || current_user?(@commentuser)
-      return true
-    else
-      redirect_to root_url
+
+    def correct_user
+      @comment = current_user.comments.find_by(id: params[:id])
+      redirect_to root_url if @comment.nil?
     end
-  end
+
+    def admin?(user)
+      if not user.nil?
+        return user.admin
+      end
+      return false
+    end
+    
+    def auth_requirements_one
+      @commentuser = current_user.comments.find_by(id: params[:id])
+      if admin?(current_user) || current_user?(@commentuser)
+        return true
+      else
+        redirect_to root_url
+      end
+    end
 end
 
 

@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813171616) do
+ActiveRecord::Schema.define(version: 20141103163034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calendars", force: true do |t|
+    t.integer  "post_year"
+    t.integer  "post_month"
+    t.integer  "post_numberof"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -34,8 +42,10 @@ ActiveRecord::Schema.define(version: 20140813171616) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "calendar_id"
   end
 
+  add_index "posts", ["calendar_id"], name: "index_posts_on_calendar_id", using: :btree
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
