@@ -11,20 +11,20 @@ class Post < ActiveRecord::Base
 	def add_to_calendar
       Calendar.where(post_month: ((self.created_at).to_date).mon).each do |calendar|
         if calendar.post_year == ((self.created_at).to_date).year
-          self.calendar_id=calendar.id
           calendar.post_numberof+=1
           calendar.save
+          self.calendar_id=calendar.id
           self.save
           return
         end
       end
       
       calendar=Calendar.new
-      self.calendar_id=calendar.id
       calendar.post_numberof=1
       calendar.post_year=((self.created_at).to_date).year
       calendar.post_month=((self.created_at).to_date).mon
       calendar.save
+      self.calendar_id=calendar.id
       self.save
       return
     end
