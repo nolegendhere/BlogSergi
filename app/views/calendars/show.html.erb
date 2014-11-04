@@ -1,0 +1,17 @@
+<% provide(:title, "Show Calendar") %>
+<div class="row">
+	<aside class="span9">
+		<%= will_paginate @posts%>
+		<ol class="userposts">
+			<%= render @posts %>
+		</ol>
+		<%= will_paginate @posts%>
+	</aside>
+	<aside class="span3">
+		<section class="text-center">
+		<% if @calendar.any? %>
+			<%= render @calendar %>
+		<% end %>
+		</section>
+	</aside>
+</div>
