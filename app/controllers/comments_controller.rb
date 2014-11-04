@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment= Comment.create(comment_params)
     @comment.user_id = current_user.id
     @post = Post.find_by_id(comment_params[:post_id])
+    @calendar=Calendar.all
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to @post
@@ -32,6 +33,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @post= Post.find_by_id(@comment.post_id)
+    @calendar=Calendar.all
     if @comment.update(comment_params)
       flash[:success] = "Comment updated"
       redirect_to @post
