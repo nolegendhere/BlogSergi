@@ -21,7 +21,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    @post=Post.find(params[:id])
+    @post.remove_to_calendar
+    @post.destroy
     redirect_to root_url
   end
 
