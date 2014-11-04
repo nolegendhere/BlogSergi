@@ -28,5 +28,20 @@ class Post < ActiveRecord::Base
       self.save
       return
     end
+
+    def remove_to_calendar
+      Calendar.where(post_month: ((self.created_at).to_date).mon).each do |calendar|
+        if calendar.post_year == ((self.created_at).to_date).year
+          calendar.post_numberof-=1
+          if calendar.post_numberof==0
+            calendar.destroy
+            return
+          else
+            calendar.save
+            return
+          end
+        end
+      end
+    end
 #=end
 end
