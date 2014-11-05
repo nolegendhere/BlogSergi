@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
     @calendar=Calendar.all
     respond_to do |format|
       if @comment.save
-        flash[:success] = "Comment created!"
         format.html { 
+          flash[:success] = "Comment created!"
           redirect_to @post
         }
       else
