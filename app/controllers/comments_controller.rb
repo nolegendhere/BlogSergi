@@ -3,16 +3,24 @@ class CommentsController < ApplicationController
   #before_action :correct_user, only: [:destroy,:edit, :update]
   before_action :auth_requirements_one, only: [:destroy,:edit, :update]
 
+
   def create
     @comment= Comment.create(comment_params)
     @comment.user_id = current_user.id
     @post = Post.find_by_id(comment_params[:post_id])
     @calendar=Calendar.all
-    if @comment.save
-      flash[:success] = "Comment created!"
-      redirect_to @post
-    else
-      render 'posts/show'
+    respond_to do |format|
+      if @comment.save
+        flash[:success] = "Comment created!"
+        format.html { 
+          redirect_to @post
+        }
+      else
+        format.html {
+          render 'posts/show'
+        }
+      end
+      format.js
     end
   end
 

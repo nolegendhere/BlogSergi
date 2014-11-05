@@ -1,10 +1,12 @@
-<small>
-  <span class="content"><%= simple_format comment.content %></span>
-  <span class="timestamp">
-    Commented <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %>
-  </span>
-  <% if current_user?(comment.user) || admin?(current_user) %>
-    <%= link_to "edit", edit_comment_path(comment), data: { confirm: "You sure?" }, title: comment.content %>
-    <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.content %>
-  <% end %>
-</small>
+<%= div_for comment do %>
+	<small>
+	  <span class="content"><%= simple_format comment.content %></span>
+	  <span class="timestamp">
+	    Commented <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %>
+	  </span>
+	  <% if current_user?(comment.user) || admin?(current_user) %>
+	    <%= link_to "edit", edit_comment_path(comment), data: { confirm: "You sure?" }, title: comment.content %>
+	    <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.content %>
+	  <% end %>
+	</small>
+<% end %>
