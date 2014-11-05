@@ -28,7 +28,12 @@ class CommentsController < ApplicationController
     @comment=Comment.find(params[:id])
     @post= Post.find_by_id(@comment.post_id)
     @comment.destroy
-    redirect_to @post
+    respond_to do |format|
+      format.html {
+        redirect_to @post
+      }
+      format.js
+    end
   end
 
   def index

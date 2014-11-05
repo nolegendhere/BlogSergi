@@ -6,7 +6,7 @@
 	  </span>
 	  <% if current_user?(comment.user) || admin?(current_user) %>
 	    <%= link_to "edit", edit_comment_path(comment), data: { confirm: "You sure?" }, title: comment.content %>
-	    <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.content %>
+	    <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.content, remote: true %>
 	  <% end %>
 	</small>
 <% end %>
