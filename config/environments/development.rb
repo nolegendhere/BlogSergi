@@ -28,16 +28,11 @@ BlogSergi::Application.configure do
   config.assets.debug = true
 
   # config/environments/development.rb
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'nolegendhere.com' }
-
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "nolegendhere.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
-  }
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.default :charset => "utf-8"
 end
