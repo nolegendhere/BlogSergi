@@ -10,4 +10,5 @@ class MailNotifier < ActionMailer::Base
     @user = user
     mail to: user.email, subject: 'Registration confirmation'
   end
+
 end

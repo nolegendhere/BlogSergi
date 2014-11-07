@@ -46,4 +46,7 @@ group :development do
     gem 'capistrano'
 end
 
+gem 'delayed_job_active_record'
+gem 'daemons'
+
 

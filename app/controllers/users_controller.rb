@@ -22,7 +22,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      MailNotifier.registered(@user).deliver
+      #without delay
+      #MailNotifier.registered(@user).deliver
+      #trying delay
+      MailNotifier.delay.registered(@user)
       flash[:success] = "Welcome to the Blog Sergi!"
       redirect_to root_url
     else
