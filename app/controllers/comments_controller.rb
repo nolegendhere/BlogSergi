@@ -74,7 +74,8 @@ class CommentsController < ApplicationController
     end
     
     def auth_requirements_one
-      @commentuser = current_user.comments.find_by(id: params[:id])
+      @comment= current_user.comments.find_by(id: params[:id])
+      @commentuser = User.find_by(id: @comment.user_id)
       if admin?(current_user) || current_user?(@commentuser)
         return true
       else
