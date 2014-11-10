@@ -1,10 +1,14 @@
 BlogSergi::Application.routes.draw do
   
-  resources :users
+  resources :users 
+
+
   resources :calendars
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts,  only: [:create, :destroy, :index, :edit, :update, :show]
   resources :comments, only: [:create, :destroy, :index,:edit, :update]
+  resources :relationships,       only: [:create, :destroy]
+
  
   #get "static_pages/home"
   #match '/', to: 'static_pages#home', via: 'get'
