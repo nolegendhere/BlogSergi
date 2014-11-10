@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110130901) do
+ActiveRecord::Schema.define(version: 20141110150637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,15 +65,23 @@ ActiveRecord::Schema.define(version: 20141110130901) do
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
 
   create_table "relationships", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "subscription_id"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "relationships", ["post_id"], name: "index_relationships_on_post_id", using: :btree
-  add_index "relationships", ["user_id", "post_id"], name: "index_relationships_on_user_id_and_post_id", unique: true, using: :btree
-  add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
+  add_index "relationships", ["subscription_id", "post_id"], name: "index_relationships_on_subscription_id_and_post_id", unique: true, using: :btree
+  add_index "relationships", ["subscription_id"], name: "index_relationships_on_subscription_id", using: :btree
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
