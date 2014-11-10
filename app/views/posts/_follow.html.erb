@@ -1,5 +1,5 @@
-<%= form_for(current_user.active_relationships.
-                          build(followed_id: @post.id)) do |f| %>
-  <div><%= hidden_field_tag :followed_id, @post.id %></div>
+<%= form_for(current_user.subscription.active_relationships.
+                          build(post_id: @post.id)) do |f| %>
+  <div><%= hidden_field_tag :post_id, @post.id %></div>
   <%= f.submit "Follow", class: "btn btn-primary" %>
 <% end %>

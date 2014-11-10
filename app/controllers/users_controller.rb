@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
+      @user.add_subscription
       #without delay
       #MailNotifier.registered(@user).deliver
       #trying delay

@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   has_many :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "post_id",
                                    dependent:   :destroy
-  has_many :users, through: :passive_relationships
+  has_many :subscriptions, through: :passive_relationships
 	default_scope -> { order('created_at DESC') }
 	#scope :by_month, where()
 	validates :title, presence: true

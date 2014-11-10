@@ -2,12 +2,7 @@ class User < ActiveRecord::Base
   #before_save { self.email = email.downcase }
   has_many :posts , dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "user_id",
-                                  dependent:   :destroy
-  has_many :posts, through: :active_relationships
-  
-
+  has_one  :subscription
 
   
   before_save { email.downcase! }
@@ -21,26 +16,19 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
   
- 
   
   def feed
     Post.where("user_id = ?", id)
   end
 
-  # Follows a post.
-  def follow(post)
-    active_relationships.create(post_id: post.id)
+  def add_subscription
+    subscription=Subscription.new
+    subscription.user_id=self.id
+    self.subscribed=true
+    self.save
+    subscription.save
   end
 
-  # Unfollows a post.
-  def unfollow(post)
-    active_relationships.find_by(post_id: post.id).destroy
-  end
-
-  # Returns true if the current user is following the post.
-  def following?(post)
-    self.posts.include?(post)
-  end
 
 #without cookies
   def User.digest(string)
