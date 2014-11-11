@@ -45,9 +45,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @calendar=Calendar.all
     if signed_in?
-      if !current_user.subscribed
-        current_user.add_subscription
-      end
       @comment = current_user.comments.build
     end
   end
