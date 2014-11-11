@@ -10,5 +10,9 @@ class MailNotifier < ActionMailer::Base
     @user = user
     mail to: user.email, subject: 'Registration confirmation'
   end
-
+  
+  def follow_email(users, post)
+    @users=users
+    mail to: Proc.new { users.pluck(:email) }, subject: 'The post #{post.title} has been commented'
+  end
 end
