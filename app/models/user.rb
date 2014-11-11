@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   def add_subscription
     subscription=Subscription.new
     subscription.user_id=self.id
+    subscription.email=self.email
+    subscription.name=self.name
     self.subscribed=true
     self.save
     subscription.save
