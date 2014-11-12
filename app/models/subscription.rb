@@ -21,4 +21,21 @@ class Subscription < ActiveRecord::Base
     posts.include?(post)
   end
 
+  #Subscribe to blog
+  def subscribe(user)
+    user.subscription.subscribed=true
+    user.subscription.save
+  end
+
+  #Unsubcribe to blog
+  def unsubscribe(user)
+    user.subscription.subscribed=false
+    user.subscription.save
+  end
+
+  #Returns true if the current user is subscribed to the blog
+  def subscribed?(user)
+    user.subscription.subscribed==true
+  end
+
 end
