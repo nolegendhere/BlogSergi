@@ -7,7 +7,10 @@ class SubscriptionsController < ApplicationController
     else
     	current_user.subscription.subscribe(current_user)
     end
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+  	end
   end
   
 end

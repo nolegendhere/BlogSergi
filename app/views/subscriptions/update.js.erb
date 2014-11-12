@@ -1,0 +1,5 @@
+<% if current_user.subscription.subscribed?(current_user) %>
+	$("#subscribe_form").html("<%= escape_javascript(render 'static_pages/unsubscribe') %>")
+<% else %>
+	$("#subscribe_form").html("<%= escape_javascript(render 'static_pages/subscribe') %>")
+<% end %>
