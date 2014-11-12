@@ -12,6 +12,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
        @post.add_to_calendar
+       subscriptions_to_email=Subscriptions.where(subscribed: true)
+       #@subscriptions_to_email=@post.subscriptions
+       #MailNotifier.delay.subscribe_email(subscriptions_to_email,@post)
+       #MailNotifier.subscribe_email(subscriptions_to_email,@post).deliver
       flash[:success] = "Post created!"
       redirect_to root_url
     else
