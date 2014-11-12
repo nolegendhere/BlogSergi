@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   #before_save { self.email = email.downcase }
   has_many :posts , dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_one  :subscription
+  has_one  :subscription, dependent: :destroy
 
   
   before_save { email.downcase! }
@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+
   
   
   def feed
@@ -24,8 +25,8 @@ class User < ActiveRecord::Base
   def add_subscription
     subscription=Subscription.new
     subscription.user_id=self.id
-    self.subscribed=true
-    self.save
+    subscription.email=self.email
+    subscription.name=self.name
     subscription.save
   end
 
