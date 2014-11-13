@@ -16,6 +16,7 @@ class PostsController < ApplicationController
        #MailNotifier.delay.subscribe_email(subscriptions_to_email,@post)
        #MailNotifier.subscribe_email(subscriptions_to_email,@post).deliver
        MailNotifier.send_subscribe_email(subscriptions_to_email,@post)
+       #MailNotifier.delay.send_subscribe_email(subscriptions_to_email,@post)
       flash[:success] = "Post created!"
       redirect_to root_url
     else

@@ -16,7 +16,8 @@ class MailNotifier < ActionMailer::Base
      #@subscriptions = subscriptions.collect(&:email).join(",")
      @subscriptions=subscriptions.pluck(:email)
      @subscriptions.each do |recipient|
-       follow_email(recipient, post).deliver
+       #follow_email(recipient, post).deliver
+       delay.follow_email(recipient, post)
      end
   end
   
@@ -24,14 +25,15 @@ class MailNotifier < ActionMailer::Base
     @subscription=subscription
     @post=post
     #mail to: 'silverskier@dimonix.com', subject: 'The post #{@post.title} has been commented'
-    mail to: subscription, subject: 'The post #{@post.title} has been commented'
+    mail to: subscription, subject: 'A post has been commented'
   end
 
   def self.send_subscribe_email(subscriptions, post)
      #@subscriptions = subscriptions.collect(&:email).join(",")
      @subscriptions=subscriptions.pluck(:email)
      @subscriptions.each do |recipient|
-       subscribe_email(recipient, post).deliver
+       #subscribe_email(recipient, post).deliver
+       delay.subscribe_email(recipient, post)
      end
   end
   
@@ -39,7 +41,7 @@ class MailNotifier < ActionMailer::Base
     @subscription=subscription
     @post=post
     #mail to: 'silverskier@dimonix.com', subject: 'The post #{@post.title} has been commented'
-    mail to: subscription, subject: 'The post #{@post.title} has been commented'
+    mail to: subscription, subject: 'A post has been commented'
   end
 
 =begin 

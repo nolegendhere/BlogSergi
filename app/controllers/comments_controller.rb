@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
         #MailNotifier.delay.follow_email(@subscriptions_to_email,@post)
         #MailNotifier.follow_email(@subscriptions_to_email,@post).deliver
         MailNotifier.send_follow_email(@subscriptions_to_email,@post)
+        #MailNotifier.delay.send_follow_email(@subscriptions_to_email,@post)
         format.html { 
           flash[:success] = "Comment created!"
           redirect_to @post
