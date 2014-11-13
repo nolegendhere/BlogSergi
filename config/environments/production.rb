@@ -83,15 +83,19 @@ BlogSergi::Application.configure do
   config.action_mailer.default_url_options = { host: 'nolegendhere.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  #config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    #address: "smtp.gmail.com",
+    address: "smtp.mandrillapp.com",
     port: 587,
-    domain: "nolegendhere.com",
-    authentication: "plain",
+    #domain: "nolegendhere.com",
+    #authentication: "plain",
+    authentication: "login",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    #user_name: ENV["GMAIL_USERNAME"],
+    #password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV["MANDRILL_USERNAME"],
+    password: ENV["MANDRILL_API_KEY"]
   }
 end

@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       if @comment.save
         #@subscriptions_to_email=@post.subscriptions
         #MailNotifier.delay.follow_email(@subscriptions_to_email,@post)
-        #MailNotifier.follow_email(@subscriptions_to_email,@post).deliver
+        MailNotifier.follow_email(@subscriptions_to_email,@post).deliver
         format.html { 
           flash[:success] = "Comment created!"
           redirect_to @post
