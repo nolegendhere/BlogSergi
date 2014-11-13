@@ -24,9 +24,9 @@ class UsersController < ApplicationController
       sign_in @user
       @user.add_subscription
       #without delay
-      MailNotifier.registered(@user).deliver
+      #MailNotifier.registered(@user).deliver
       #trying delay
-      #MailNotifier.delay.registered(@user)
+      MailNotifier.delay.registered(@user)
       flash[:success] = "Welcome to the Blog Sergi!"
       redirect_to root_url
     else

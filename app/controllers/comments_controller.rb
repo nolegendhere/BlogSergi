@@ -11,9 +11,10 @@ class CommentsController < ApplicationController
     @calendar=Calendar.all
     respond_to do |format|
       if @comment.save
-        #@subscriptions_to_email=@post.subscriptions
+        @subscriptions_to_email=@post.subscriptions
         #MailNotifier.delay.follow_email(@subscriptions_to_email,@post)
-        MailNotifier.follow_email(@subscriptions_to_email,@post).deliver
+        #MailNotifier.follow_email(@subscriptions_to_email,@post).deliver
+        MailNotifier.send_list_email(@subscriptions_to_email,@post)
         format.html { 
           flash[:success] = "Comment created!"
           redirect_to @post

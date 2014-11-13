@@ -10,16 +10,53 @@ class MailNotifier < ActionMailer::Base
     @user = user
     mail to: user.email, subject: 'Registration confirmation'
   end
+
+
+  def self.send_follow_email(subscriptions, post)
+     #@subscriptions = subscriptions.collect(&:email).join(",")
+     @subscriptions=subscriptions.pluck(:email)
+     @subscriptions.each do |recipient|
+       follow_email(recipient, post).deliver
+     end
+  end
   
-  def follow_email(subscriptions, post)
-    @subscriptions=subscriptions
-    mail to: 'silverskier@dimonix.com', subject: 'The post #{post.title} has been commented'
-    #mail to: Proc.new { subscriptions.pluck(:email) }, subject: 'The post #{post.title} has been commented'
+  def follow_email(subscription, post)
+    @subscription=subscription
+    @post=post
+    #mail to: 'silverskier@dimonix.com', subject: 'The post #{@post.title} has been commented'
+    mail to: subscription, subject: 'The post #{@post.title} has been commented'
   end
 
-  def subscribe_email(subscriptions, post)
-    @subscriptions=subscriptions
-    mail to: 'silverskier@dimonix.com', subject: 'The post #{post.title} has been created in Blog Sergi'
-    #mail to: Proc.new { subscriptions.pluck(:email) }, subject: 'The post #{post.title} has been created in Blog Sergi'
+  def self.send_subscribe_email(subscriptions, post)
+     #@subscriptions = subscriptions.collect(&:email).join(",")
+     @subscriptions=subscriptions.pluck(:email)
+     @subscriptions.each do |recipient|
+       subscribe_email(recipient, post).deliver
+     end
   end
+  
+  def subscribe_email(subscription, post)
+    @subscription=subscription
+    @post=post
+    #mail to: 'silverskier@dimonix.com', subject: 'The post #{@post.title} has been commented'
+    mail to: subscription, subject: 'The post #{@post.title} has been commented'
+  end
+
+=begin 
+  def follow_email(subscriptions, post)
+    @subscriptions=subscriptions
+    @post=post
+    #mail to: 'silverskier@dimonix.com', subject: 'The post #{@post.title} has been commented'
+    mail to: Proc.new { subscriptions.pluck(:email) }, subject: 'The post #{@post.title} has been commented'
+  end
+=end
+
+=begin
+  def subscribe_email(subscriptions, post)
+    @post=post
+    @subscriptions=subscriptions
+    mail to: 'silverskier@dimonix.com', subject: 'The post #{@post.title} has been created in Blog Sergi'
+    #mail to: Proc.new { subscriptions.pluck(:email) }, subject: 'The post #{@post.title} has been created in Blog Sergi'
+  end
+=end
 end
