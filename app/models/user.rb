@@ -30,14 +30,14 @@ class User < ActiveRecord::Base
     subscription.save
   end
 
-
+=begin
 #without cookies
   def User.digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                     BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
   end
-
+=end
 #with cookies
 =begin
   def User.new_remember_token
