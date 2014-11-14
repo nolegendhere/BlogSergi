@@ -2,7 +2,7 @@
 	<small>
 	  <span class="content"><%= simple_format comment.content %></span>
 	  <span class="timestamp">
-	    Commented <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %>
+	    <%= link_to gravatar_for(comment.user, size: 20), comment.user %> Commented <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %> 
 	  </span>
 	  <% if current_user?(comment.user) || admin?(current_user) %>
 	    <%= link_to "edit", edit_comment_path(comment), data: { confirm: "You sure?" }, title: comment.content %>

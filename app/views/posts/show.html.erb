@@ -5,7 +5,7 @@
 			<span class="posttitle"><%= @post.title %></span>
 			<span class="content"><%= simple_format @post.content %></span>
 			<span class="timestamp">
-				Posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %> .
+				<%= link_to gravatar_for(@post.user, size: 30), @post.user %> Posted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %> 
 			</span>
 		</section>
 		<% if admin?(current_user) %>

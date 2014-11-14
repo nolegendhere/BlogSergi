@@ -162,6 +162,15 @@ aside {
   }
 }
 
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
 /* posts */
 .userposts {
   list-style: none;
@@ -169,6 +178,11 @@ aside {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
   }
 }
 .posttitle {
@@ -195,6 +209,11 @@ aside {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
   }
 }
 
