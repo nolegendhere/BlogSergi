@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
        @post.add_to_calendar
-       subscriptions_to_email=Subscriptions.where(subscribed: true)
+       subscriptions_to_email=Subscription.where(subscribed: true)
        #MailNotifier.delay.subscribe_email(subscriptions_to_email,@post)
        #MailNotifier.subscribe_email(subscriptions_to_email,@post).deliver
        MailNotifier.send_subscribe_email(subscriptions_to_email,@post)
