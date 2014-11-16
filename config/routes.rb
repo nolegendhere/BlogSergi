@@ -9,6 +9,7 @@ BlogSergi::Application.routes.draw do
   resources :comments, only: [:create, :destroy, :index,:edit, :update]
   resources :relationships,  only: [:create, :destroy]
   resources :subscriptions, only: [:create, :destroy, :edit, :update] 
+  
 
  
   #get "static_pages/home"
