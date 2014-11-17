@@ -51,7 +51,7 @@ class Post < ActiveRecord::Base
   def upload(params)
     uploaded_io = params[:filename]
     #uploaded_io = params[:piture][:filename]
-    File.open(Rails.root.join('app', 'assets', 'images', uploaded_io.original_filename), 'wb') do |file|
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
     end
     self.filename=uploaded_io.original_filename
