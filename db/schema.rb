@@ -59,7 +59,10 @@ ActiveRecord::Schema.define(version: 20141116123251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "calendar_id"
-    t.string   "picture"
+    t.binary   "picture"
+    t.string   "filename"
+    t.string   "content_type"
+    t.string   "description"
   end
 
   add_index "posts", ["calendar_id"], name: "index_posts_on_calendar_id", using: :btree

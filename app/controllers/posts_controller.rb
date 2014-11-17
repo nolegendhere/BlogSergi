@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.upload(post_params)
     if @post.save
        @post.add_to_calendar
        subscriptions_to_email=Subscription.where(subscribed: true)
@@ -57,7 +58,7 @@ class PostsController < ApplicationController
   private
   
     def post_params
-      params.require(:post).permit(:title,:content,:picture)
+      params.require(:post).permit(:title,:content,:filename)
     end
 
     def correct_user
