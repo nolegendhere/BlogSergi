@@ -62,7 +62,7 @@ class PostsController < ApplicationController
     path = Rails.root.join('public', 'uploads', @post.filename)
     send_file( path,
       :disposition => 'inline',
-      :type => 'image/jpeg',
+      :type => @post.content_type,
       :x_sendfile => true )
   end
 
