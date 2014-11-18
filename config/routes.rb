@@ -19,6 +19,7 @@ BlogSergi::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/content', to: 'posts#index',          via: 'get'
+  match '/serve_image/:id/:filename', to: 'posts#serve', via: 'get'
 
   
   #match 'users/makeadmin/:id', to: 'users#make_admin',               via: 'get', as: :make_admin

@@ -47,7 +47,8 @@ class Post < ActiveRecord::Base
       end
     end
   end
-
+#custom upload
+#=begin
   def upload(params)
     uploaded_io = params[:filename]
     #uploaded_io = params[:piture][:filename]
@@ -55,32 +56,7 @@ class Post < ActiveRecord::Base
       file.write(uploaded_io.read)
     end
     self.filename=uploaded_io.original_filename
+    self.content_type=uploaded_io.content_type
   end
-
-=begin
-  def upload
-    redirect_to "index"
-    uploaded_io = params[:filename]
-    self.filename=uploaded_io.original_filename
-  end
-=end
-=begin
-  def upload
-    uploaded_io = params[:filename]
-    #uploaded_io = params[:piture][:filename]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
-    self.filename=uploaded_io.original_filename
-  end
-=end
-=begin
-  def upload
-    uploaded_io = params[:filename].original_filename
-    #uploaded_io = params[:piture][:filename]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io), 'wb') do |file|
-      file.write(params[:filename].read)
-    end 
-  end
-=end
+#=end
 end

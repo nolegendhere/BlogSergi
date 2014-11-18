@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    #custom upload
     @post.upload(post_params)
     if @post.save
        @post.add_to_calendar
@@ -53,6 +54,16 @@ class PostsController < ApplicationController
     if signed_in?
       @comment = current_user.comments.build
     end
+  end
+
+  def serve
+    @post=Post.find(params[:id])
+    #path = Rails.root.join('public', 'uploads', "#{params[:filename]}.jpg")
+    path = Rails.root.join('public', 'uploads', @post.filename)
+    send_file( path,
+      :disposition => 'inline',
+      :type => 'image/jpeg',
+      :x_sendfile => true )
   end
 
   private
